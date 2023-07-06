@@ -3,35 +3,24 @@
 */
 
 #include <stdio.h> 
+#include <stdlib.h>
+#include <dirent.h>
+#include <string.h>
+#include <ctype.h>
 
 #define ALPHABETSIZE 26     //The total number of alphabetical letter from a - z (case insensitive)
 #define SPECIALCHARSIZE 5   // The number of these special characters ','   '.'  ';'  ':'  '!' 
 
-void alphabetlettercount(char *path, char *filetowrite, long alphabetfreq[]);
-/**
-  The alphabetlettercount function counts the frequency of each alphabet letter (a-z, case insensitive) in all the .txt files under
-  directory of the given path and write the results to a file named as filetowrite.
-  
-  Input: 
-      path - a pointer to a char string [a character array] specifying the path of the directory; and
-      filetowrite - a pointer to a char string [a character array] specifying the file where results should be written in.
-      alphabetfreq - a pointer to a long array storing the frequency of each alphabet letter from a - z:
-      alphabetfreq[0]: the frequency of 'a'
-      alphabetfreq[1]: the frequency of 'b'
-         ... ...
-      alphabetfreq[25]:the frequency of 'z'
 
-  
-  Output: a new file named as filetowrite with the frequency of each alphabet letter written in
- 
-*/
+void alphabetlettercount(char *path, char *filetowrite, long alphabetfreq[]);
+
 
 void specialcharcount(char *path, char *filetowrite,  long charfreq[]);
 /**
   The specialcharcount function counts the frequency of the following 5 special characters:
   ','   '.'   ':'    ';'    '!'
    
-  in all the .txt files under directory of the given path and write the results to a file named as filetowrite.
+
   
   Input: 
   

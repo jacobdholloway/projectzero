@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 void specialcharcount(char *path, char *filetowrite, long charfreq[])
 {
@@ -66,14 +67,21 @@ void specialcharcount(char *path, char *filetowrite, long charfreq[])
     }
 
     FILE *outputFile = fopen(filetowrite, "w");
+    time_t currentTime;
+    time(&currentTime);
+    char *timeString = ctime(&currentTime);
     if (outputFile != NULL)
     {
+
         char specialChars[] = {',', '.', ':', ';', '!'};
+        fprintf(outputFile, "File created on: %s\n", timeString);
         for (int i = 0; i < 5; ++i)
         {
             fprintf(outputFile, "%c -> %ld\n", specialChars[i], charfreq[i]);
         }
         fclose(outputFile);
+
+        printf("Special result file created successfully.\n");
         
         
     }
@@ -96,16 +104,6 @@ void specialcharcount(char *path, char *filetowrite, long charfreq[])
       charfreq[2]: the frequency of ':'
       charfreq[3]: the frequency of ';'
       charfreq[4]: the frequency of '!'
-
-  
-  Output: a new file named as filetowrite with the frequency of the above special characters written in
-  
-  Steps recommended to finish the function:
-  1) Find all the files ending with .txt and store in filelist.
-  2) Read all files in the filelist one by one and count the frequency of each alphabet letter only (a - z). The array 
-  long alphabetfreq[] always has the up-to-date frequencies of alphabet letters counted so far. If the letter is upper case, convert
-  it to lower case first. 
-  3) Write the result in the output file: filetowrite in following format: 
   
      character -> frequency
      
@@ -114,12 +112,6 @@ void specialcharcount(char *path, char *filetowrite, long charfreq[])
      . -> 11
      : -> 20
      ; -> 11
-     ! -> 12     
-     
-  Assumption:  
-  1) You can assume there is no sub-directory under the given path so you don't have to search the files 
-  recursively.    
-  2) Only .txt files are counted and other types of files should be ignored.
-  
+     ! -> 12    
 */
 
